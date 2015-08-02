@@ -10,7 +10,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
-    <!-- local styling overrides -->
+    
+    <!-- local css -->
     <style type="text/css" media="screen">
         body {
             padding-top: 80px;
@@ -53,47 +54,38 @@
         }
     </style>
     
-    <!-- local JS overrides -->
-    <script type="text/javascript" charset="utf-8">
-        // Pause the video when the modal is closed
-        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
-            // Remove the src so the player itself gets removed, as this is the only
-            // reliable way to ensure the video stops playing in IE
-            $("#trailer-video-container").empty();
+    <!-- app code to call youtube api 
+        ref: https://developers.google.com/youtube/iframe_api_reference
+    -->
+    <script>
+      // load the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // This function creates an <iframe> and player after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+          
+        player1 = new YT.Player('player1', {
+          height: '240',
+          width: '500',
+          videoId: 'M7lc1UVf-VE', 
         });
-        // Start playing the video whenever the trailer modal is opened
-        $(document).on('click', '.movie-tile', function (event) {
-            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
-            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
-            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
-              'id': 'trailer-video',
-              'type': 'text-html',
-              'src': sourceUrl,
-              'frameborder': 0
-            }));
+        player2 = new YT.Player('player2', {
+          height: '240',
+          width: '500',
+          videoId: 'M7lc1UVf-VE', 
         });
-        // Animate in the movies when the page loads
-        $(document).ready(function () {
-          $('.movie-tile').hide().first().show("fast", function showNext() {
-            $(this).next("div").show("fast", showNext);
-          });
-        });
+      }
+
+    
     </script>
 </head>
 
 <body>
-    <!-- Trailer Video Modal -->
-    <div class="modal" id="trailer">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
-            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
-          </a>
-          <div class="scale-media" id="trailer-video-container">
-          </div>
-        </div>
-      </div>
-    </div>
     
     <!-- actual content -->
     <div class="container">
@@ -107,12 +99,11 @@
     </div>
     
     <div class="container">
-        <!-- TODO generalize and generate from py dict of {title},{yt_url},{poster_img}-->
-        <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="dQw4w9WgXcQ" data-toggle="modal" data-target="#trailer">
-            <img src="http://vignette2.wikia.nocookie.net/meme/images/c/c3/RickRoll.jpg" width="220" height="342">
-            <h2>Never Gonna</h2>
-        </div>
-        <!-- TODO append iframe w/ YT API instead https://developers.google.com/youtube/iframe_api_reference -->
+
+        <div class="col-md-6 col-lg-4 movie-tile text-center" id="player1"></div>
+        <div class="col-md-6 col-lg-4 movie-tile text-center" id="player2"></div>
+    
+    
     </div>
 </body>
 
