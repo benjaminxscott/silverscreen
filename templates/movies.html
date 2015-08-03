@@ -29,23 +29,33 @@
 </br>
 </br>
 
-  
-
+<div class='container'>
 {% for movie in movies %}
-<div class= 'container'> 
+<div class='row'>
+  
+  <div class= 'col-md-4' > 
+    <img src= {{ movie['poster_img'] }} height="200" width="120">
+  </div>
+  <div class= 'col-md-4' > 
       <h2> {{ movie['title']}}</h2>
-      <img src= {{ movie['poster_img'] }} height="200" width="120">
-      
+  </div>
+  
+  
+</div>
+
+  <div class= 'row'>
         <!-- load youtube clip in an iframe 
         ref: https://developers.google.com/youtube/iframe_api_reference#Loading_a_Video_Player -->
-
-      <iframe id="player" type="text/html" width="300" height="150" 
+    <div class='embed-responsive embed-responsive-16by9'>
+    <iframe class="embed-responsive-item" id="player" type="text/html"  height="240" width="300"
         src="http://www.youtube.com/embed/{{ movie['yt_id'] }}?enablejsapi=1"
-        frameborder="5"></iframe>
-</div>
+        frameborder="0"></iframe>
+    </div>        
+  </div>
+<hr>
 {% endfor %}
 
-  {% block body %}{% endblock %}
+</div>
 </div>
 
 

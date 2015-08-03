@@ -14,7 +14,6 @@ app = Flask (__name__)
 @app.route('/')
 @app.route('/movies')
 def curtains_up():
-# TODO load from yaml
     movies = [
         {
          'title':"Fight Club",
