@@ -8,6 +8,6 @@ Install Dependencies
 `pip install -r requirements.txt`
 
 Start server
-`./showtime.py`
+`./silverscreen.py`
 
 > By default, listener runs on port 8080 
