@@ -18,18 +18,33 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/movies">Recommended</a></li>
-            <li><a href="https://github.com/bschmoker">About</a></li>
+            <li><a href="https://github.com/bschmoker">Author</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
+    
 </header>
 </br>
 </br>
 </br>
 
+  
 
-<p> XXX pants</p>
+{% for movie in movies %}
+<div class= 'container'> 
+      <h2> {{ movie['title']}}</h2>
+      <img src= {{ movie['poster_img'] }} height="200" width="120">
+      
+        <!-- load youtube clip in an iframe 
+        ref: https://developers.google.com/youtube/iframe_api_reference#Loading_a_Video_Player -->
+
+      <iframe id="player" type="text/html" width="300" height="150" 
+        src="http://www.youtube.com/embed/{{ movie['yt_id'] }}?enablejsapi=1"
+        frameborder="5"></iframe>
+</div>
+{% endfor %}
+
   {% block body %}{% endblock %}
 </div>
 
