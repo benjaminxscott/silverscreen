@@ -5,15 +5,13 @@ from flask import make_response, Flask, request, render_template
 app = Flask (__name__)
 
 
-# ----- APPLICATION LOGIC -----
-
-# TODO pass py dict of {title},{yt_url},{poster_img} passed as var to jinja
 
 # ----- URL ROUTING -----
 
 @app.route('/')
 @app.route('/movies')
 def curtains_up():
+    # Hand-jam movie information into py dictionary
     movies = [
         {
          'title':"Fight Club",
@@ -27,6 +25,7 @@ def curtains_up():
          'poster_img':'https://resizing.flixster.com/G1Ty5AeAvPre2J8CYeLPeXrh9X4=/800x1188/dkpu1ddg7pbsk.cloudfront.net/movie/11/17/99/11179941_ori.jpg'
         }
     ]
+    # Display movie information
     return render_template("movies.html", movies=movies)
     
 if __name__ == '__main__':
