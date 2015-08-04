@@ -8,26 +8,26 @@ app = Flask (__name__)
 
 # ----- URL ROUTING -----
 
-@app.route('/')
-@app.route('/movies')
-def curtains_up():
+@app.route ('/')
+@app.route ('/movies')
+def curtains_up (): 
     # Hand-jam movie information into py dictionary
     movies = [
         {
-         'title':"Fight Club",
-         'yt_id': 'J8FRBYOFu2w',
-         'poster_img':'http://i.jeded.com/i/fight-club.25541.jpg'
+         'title': "Fight Club",
+         'yt_id':  'J8FRBYOFu2w',
+         'poster_img': 'http: //i.jeded.com/i/fight-club.25541.jpg'
         }
         ,
         {
-         'title':"Zero Theorem",
-         'yt_id': 'rae7_O_6EtU',
-         'poster_img':'https://resizing.flixster.com/G1Ty5AeAvPre2J8CYeLPeXrh9X4=/800x1188/dkpu1ddg7pbsk.cloudfront.net/movie/11/17/99/11179941_ori.jpg'
+         'title': "Zero Theorem",
+         'yt_id':  'rae7_O_6EtU',
+         'poster_img': 'https: //resizing.flixster.com/G1Ty5AeAvPre2J8CYeLPeXrh9X4=/800x1188/dkpu1ddg7pbsk.cloudfront.net/movie/11/17/99/11179941_ori.jpg'
         }
     ]
     # Display movie information
-    return render_template("movies.html", movies=movies)
+    return render_template ("movies.html", movies=movies)
     
-if __name__ == '__main__':
+if __name__ == '__main__': 
     app.debug = "True"
-    app.run(host='0.0.0.0', port=8080)
+    app.run ( host='0.0.0.0', port=8080 )
