@@ -29,5 +29,5 @@ def curtains_up ():
     return render_template ("movies.html", movies=movies)
     
 if __name__ == '__main__': 
-    app.debug = "True"
+    
     app.run ( host='0.0.0.0', port=8080 )
